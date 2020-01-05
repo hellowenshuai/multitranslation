@@ -71,7 +71,7 @@ public final class BaiduTranslator extends AbstractTranslator {
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36");
 
         request.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-
+        Thread.sleep(2000);
         CloseableHttpResponse response = httpClient.execute(request);
         HttpEntity entity = response.getEntity();
 
