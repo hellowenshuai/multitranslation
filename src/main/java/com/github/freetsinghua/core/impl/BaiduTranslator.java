@@ -1,5 +1,8 @@
 package com.github.freetsinghua.core.impl;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.freetsinghua.core.AbstractTranslator;
 import com.github.freetsinghua.core.io.ClassPathResource;
@@ -101,7 +104,13 @@ public final class BaiduTranslator extends AbstractTranslator {
         }
 
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.readTree(text).path("trans_result").findPath("dst").toString();
+//        return mapper.readTree(text).path("trans_result").findPath("dst").toString();
+        com.alibaba.fastjson.JSONObject jsonObject = (JSONObject) JSONObject.parse(text);
+        com.alibaba.fastjson.JSONObject jsonObject2 = (JSONObject) jsonObject.get("trans_result");
+        com.alibaba.fastjson.JSONArray jsonObject3 = (JSONArray) jsonObject2.get("data");
+        com.alibaba.fastjson.JSONObject jsonObject4  = (JSONObject) jsonObject3.get(0);
+        String dst1 = jsonObject4.get("dst").toString();
+        return dst1;
     }
 
     /**
